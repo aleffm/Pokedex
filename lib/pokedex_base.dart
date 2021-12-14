@@ -18,7 +18,7 @@ class MyPokedex extends StatelessWidget {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is PokemonPageLoadSucess) {
+          } else if (state is PokemonPageLoadSuccess) {
             return GridView.builder(
               gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),

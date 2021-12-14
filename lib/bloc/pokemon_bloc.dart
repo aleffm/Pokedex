@@ -17,10 +17,10 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
       try {
         final pokemonPageResponse =
         await _pokemonRepository.getPokemonPage(event.page);
-        yield PokemonPageLoadSucess(
+        yield PokemonPageLoadSuccess(
             pokemonListings: pokemonPageResponse.pokemonListings,
             canLoadNextPage: pokemonPageResponse.canLoadNextPage);
-      } catch(e) {
+      } catch (e) {
         yield PokemonPageLoadFailed(error: e);
       }
     }

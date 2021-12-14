@@ -6,25 +6,20 @@ import 'bloc/pokemon_bloc.dart';
 import 'bloc/pokemon_event.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Theme.of(context)
-          .copyWith(
-        primaryColor: Colors.red,
-      ),
-
-      home: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => PokemonBloc()..add(PokemonPageRequest(page: 0)))],
-        child: MyPokedex(),
-      ),
+          .copyWith(primaryColor: Colors.red, accentColor: Colors.redAccent),
+      home: MultiBlocProvider(providers: [
+        BlocProvider(
+            create: (context) =>
+            PokemonBloc()..add(PokemonPageRequest(page: 0)))
+      ], child: MyPokedex()),
     );
   }
 }

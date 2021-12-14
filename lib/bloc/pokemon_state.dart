@@ -6,11 +6,11 @@ class PokemonInitial extends PokemonState{}
 
 class PokemonLoadInProgress extends PokemonState{}
 
-class PokemonPageLoadSucess extends PokemonState{
+class PokemonPageLoadSuccess extends PokemonState{
   final List<PokemonListing> pokemonListings;
   final bool canLoadNextPage;
 
-  PokemonPageLoadSucess({
+  PokemonPageLoadSuccess({
     required this.pokemonListings,
     required this.canLoadNextPage
   });
