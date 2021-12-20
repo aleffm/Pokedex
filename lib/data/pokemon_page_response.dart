@@ -1,25 +1,21 @@
 import 'package:flutter/foundation.dart';
-
 /*
-{
-  "count": 1118,
-  "next": "https://pokeapi.co/api/v2/pokemon?offset=20&limit=20",
-  "previous": null,
-  "results": [
-    {
-      "name": "bulbasaur",
-      "url": "https://pokeapi.co/api/v2/pokemon/1/"
-    },
-    {
-      "name": "ivysaur",
-      "url": "https://pokeapi.co/api/v2/pokemon/2/"
-    },
+count:1118
+next:"https://pokeapi.co/api/v2/pokemon?offset=300&limit=100"
+previous:"https://pokeapi.co/api/v2/pokemon?offset=100&limit=100"
+result: [  {name:"unown"
+  url:"https://pokeapi.co/api/v2/pokemon/201/"}
+  {name:"wobbuffet"
+  url:"https://pokeapi.co/api/v2/pokemon/202/"}
+]
  */
+
 class PokemonListing {
   final int id;
   final String name;
 
-  String get imageUrl => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
+  String get imageUrl =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
 
   PokemonListing({@required this.id, @required this.name});
 
@@ -36,10 +32,8 @@ class PokemonPageResponse {
   final List<PokemonListing> pokemonListings;
   final bool canLoadNextPage;
 
-  PokemonPageResponse({
-    @required this.pokemonListings,
-    @required this.canLoadNextPage
-  });
+  PokemonPageResponse(
+      {@required this.pokemonListings, @required this.canLoadNextPage});
 
   factory PokemonPageResponse.fromJson(Map<String, dynamic> json) {
     final canLoadNextPage = json['next'] != null;
@@ -47,6 +41,7 @@ class PokemonPageResponse {
         .map((listingJson) => PokemonListing.fromJson(listingJson))
         .toList();
 
-    return PokemonPageResponse(pokemonListings: pokemonListings, canLoadNextPage: canLoadNextPage);
+    return PokemonPageResponse(
+        pokemonListings: pokemonListings, canLoadNextPage: canLoadNextPage);
   }
 }
