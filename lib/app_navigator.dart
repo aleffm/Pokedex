@@ -8,7 +8,7 @@ import 'bloc/nav_cubit.dart';
 class AppNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavCubit, int>(builder: (context, pokemonId) {
+    return BlocBuilder<NavCubit, String>(builder: (context, pokemonId) {
       return Navigator(
         pages: [
           MaterialPage(child: PokedexView()),

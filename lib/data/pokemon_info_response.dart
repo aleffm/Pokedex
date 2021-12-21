@@ -29,4 +29,10 @@ class PokemonInfoResponse {
         height: json['height'],
         weight: json['weight']);
   }
+
+  factory PokemonInfoResponse.error(String error){
+    return PokemonInfoResponse(
+        name: "error",
+    );
+  }
 }

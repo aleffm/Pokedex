@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/nav_cubit.dart';
-import 'bloc/pokemon_bloc.dart';
-import 'bloc/pokemon_state.dart';
 import 'constants.dart';
 
 class PokedexView extends StatelessWidget {
@@ -13,45 +11,64 @@ class PokedexView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokedex'),
+        title: Text('Aleff Poakedex'),
       ),
-      body: BlocBuilder<PokemonBloc, PokemonState>(
-        builder: (context, state) {
-          if (state is PokemonLoadInProgress) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is PokemonPageLoadSuccess) {
-            return GridView.builder(
-              gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-              itemCount: state.pokemonListings.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => BlocProvider.of<NavCubit>(context)
-                      .showPokemonDetails(state.pokemonListings[index].id),
-                  child: Card(
-                    child: GridTile(
-                      child: Column(
-                        children: [
-                          Image.network(state.pokemonListings[index].imageUrl),
-                          Text(state.pokemonListings[index].name)
-                        ],
-                      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding,
+                vertical: kDefaultPadding/4),
+            decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(color: Colors.grey.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(width: kDefaultPadding/4,),
+                        Expanded(
+                            child: TextFormField(
+                              controller: pokeController,
+                              textCapitalization: TextCapitalization.none,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 1,
+                              maxLines: 1,
+                              style: TextStyle(fontSize: 15),
+                              decoration: InputDecoration(
+                                  labelText: "Pokemon",
+                                  hintText: "Nome ou Id",border: InputBorder.none),
+                            )
+                        ),
+                      ],
                     ),
                   ),
-                );
-              },
-            );
-          } else if (state is PokemonPageLoadFailed) {
-            return Center(
-              child: Text(state.error.toString()),
-            );
-          } else {
-            return Container();
-          }
-        },
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              _getButtomSearch(context),
+            ],
+          ),
+        ],
       ),
     );
   }
+
+  _getButtomSearch(BuildContext) => Expanded(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      child: OutlinedButton(
+          onPressed: () => BlocProvider.of<NavCubit>(BuildContext)
+              .showPokemonDetails(pokeController.text),
+          child: Text("Search")
+      ),
+    ),
+  );
 }

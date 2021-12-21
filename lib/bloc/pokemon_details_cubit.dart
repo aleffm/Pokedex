@@ -11,7 +11,7 @@ class PokemonDetailsCubit extends Cubit<PokemonDetails> {
 
   PokemonDetailsCubit() : super(null);
 
-  void getPokemonDetails(int pokemonId) async {
+  void getPokemonDetails(String pokemonId) async {
     final responses = await Future.wait([
       _pokemonRepository.getPokemonInfo(pokemonId),
       _pokemonRepository.getPokemonSpeciesInfo(pokemonId)

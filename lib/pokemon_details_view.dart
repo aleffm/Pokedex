@@ -16,46 +16,38 @@ class PokemonDetailsView extends StatelessWidget {
         builder: (context, details) {
           return details != null
               ? Center(
-                  child: Column(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.network(details.imageUrl),
-                              Text(details.name),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: details.types
-                                    .map((type) => _pokemonTypeView(type))
-                                    .toList(),
-                              ),
-                              Text(
-                                  'ID: ${details.id}  -  Weight: ${details.weight} lb  -  Height: ${details.height}')
-                            ],
-                          ),
-                        )),
-                    Expanded(
-                        flex: 2,
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Card(
-                            child: Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                details.description,
-                                textAlign: TextAlign.center,
-                              ),
+              child: Column(
+                children: [
+                  Expanded(
+                      flex: 2,
+                      child: Card(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.network(details.imageUrl),
+                            Text(details.name),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: details.types
+                                  .map((type) => _pokemonTypeView(type))
+                                  .toList(),
                             ),
-                          ),
-                        ))
-                  ],
-                ))
+                            Text(
+                                'ID: ${details.id}  -  Weight: ${details.weight}  -  Height: ${details.height}')
+                          ],
+                        ),
+                      )),
+                  Expanded(
+                      child:Text(
+                              details.description,
+                              textAlign: TextAlign.center,
+                        ),
+                      ),
+                ],
+              ))
               : Center(
-                  child: CircularProgressIndicator(),
-                );
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
@@ -78,16 +70,16 @@ class PokemonDetailsView extends StatelessWidget {
         color = Color(0xFF9CD363);
         break;
       case 'ground':
-        color = Color(0xFFE3C969);
+        color = Color(0xFF65410A);
         break;
       case 'ice':
         color = Color(0xFFAFF4FD);
         break;
       case 'fire':
-        color = Color(0xFFE7614D);
+        color = Color(0xFFE2442D);
         break;
       case 'rock':
-        color = Color(0xFFCBBD7C);
+        color = Color(0xFF44402D);
         break;
       case 'dragon':
         color = Color(0xFF8475F7);
@@ -96,7 +88,7 @@ class PokemonDetailsView extends StatelessWidget {
         color = Color(0xFF6DACF8);
         break;
       case 'bug':
-        color = Color(0xFFC5D24A);
+        color = Color(0xFFB9D24A);
         break;
       case 'dark':
         color = Color(0xFF886958);
@@ -113,7 +105,7 @@ class PokemonDetailsView extends StatelessWidget {
       case 'flying':
         color = Color(0xFF81A2F8);
         break;
-      case 'normal':
+      case 'electric':
         color = Color(0xFFF9E65E);
         break;
       case 'fairy':

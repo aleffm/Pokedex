@@ -9,4 +9,10 @@ class PokemonSpeciesInfoResponse {
     return PokemonSpeciesInfoResponse(
         description: json['flavor_text_entries'][0]['flavor_text']);
   }
+
+  factory PokemonSpeciesInfoResponse.error(String error){
+    return PokemonSpeciesInfoResponse(
+      description: "error",
+    );
+  }
 }
